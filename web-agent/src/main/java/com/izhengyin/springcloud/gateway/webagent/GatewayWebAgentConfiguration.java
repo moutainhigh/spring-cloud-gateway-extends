@@ -15,6 +15,8 @@ public class GatewayWebAgentConfiguration {
     }
     @Bean
     public GatewayWebAgentEndpointController agentEndpointController(GatewayWebAgentService gatewayWebAgentService){
+
+        gatewayWebAgentService.getApiDefines();
         return new GatewayWebAgentEndpointController(gatewayWebAgentService);
     }
 }

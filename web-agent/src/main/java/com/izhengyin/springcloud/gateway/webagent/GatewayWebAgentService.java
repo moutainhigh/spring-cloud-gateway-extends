@@ -33,9 +33,12 @@ public class GatewayWebAgentService implements ApplicationContextAware {
                     GatewayWebApiDefine gatewayWebApiDefine = new GatewayWebApiDefine();
                     gatewayWebApiDefine.setName(Optional.ofNullable(requestMappingInfo.getName()).orElse(""));
                     gatewayWebApiDefine.setMethod(handlerMethod.toString());
+                    gatewayWebApiDefine.setHttpMethod(requestMappingInfo.getMethodsCondition().getMethods());
+                    gatewayWebApiDefine.setPathPatterns(requestMappingInfo.getPatternsCondition().getPatterns());
                     gatewayWebApiDefine.setMappingInfo(requestMappingInfo.toString());
                     gatewayWebApiDefines.add(gatewayWebApiDefine);
                 });
         return gatewayWebApiDefines;
     }
+
 }

@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>test-gateway-web-agent</artifactId>
+    <artifactId>test-web-agent</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -16,7 +16,7 @@
         </dependency>
         <dependency>
             <groupId>com.izhengyin.springcloud.gateway.extends</groupId>
-            <artifactId>gateway-web-agent</artifactId>
+            <artifactId>web-agent</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

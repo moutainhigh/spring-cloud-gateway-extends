@@ -1,6 +1,6 @@
 package com.izhengyin.springcloud.gateway.test.webagent.contollers;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
+
 /**
  * @author zhengyin zhengyinit@outlook.com
  * Created on 2020-12-18 15:59
@@ -12,8 +12,8 @@ public interface ApiController {
      * @param name
      * @return
      */
-    @GetMapping(value = "/hello/{name}",name = "你好XXX")
-    String hello(String name);
+    @RequestMapping(method = {RequestMethod.GET,RequestMethod.HEAD},value = {"/hello/{name}","/hi/{name}"},name = "你好XXX")
+    String hello(@PathVariable String name);
 
     /**
      * getResourceById

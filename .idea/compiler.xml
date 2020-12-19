@@ -9,6 +9,7 @@
         <module name="test-gateway-web-agent" />
         <module name="base" />
         <module name="web-agent" />
+        <module name="test-gateway-base" />
       </profile>
     </annotationProcessing>
   </component>
@@ -16,6 +17,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="base" options="-parameters" />
       <module name="test" options="" />
+      <module name="test-gateway-base" options="-parameters" />
       <module name="test-gateway-web-agent" options="-parameters" />
       <module name="web-agent" options="-parameters" />
     </option>
