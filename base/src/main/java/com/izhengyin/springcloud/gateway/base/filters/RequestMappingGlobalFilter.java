@@ -50,7 +50,6 @@ public class RequestMappingGlobalFilter implements GlobalFilter, Ordered {
     }
     public RequestMappingGlobalFilter(
             ApiManageService apiManageService,
-            CollectorRegistry registry,
             GatewayProperties gatewayProperties
     ){
         this.apiManageService = apiManageService;
@@ -98,7 +97,7 @@ public class RequestMappingGlobalFilter implements GlobalFilter, Ordered {
         return apiManageService.getApis(server)
                 .stream()
                 .filter(v -> {
-                    //HttpMethod 没有代表所有的方法
+                    //HttpMethod 为空时不验证
                     if(!v.getHttpMethod().isEmpty() && !v.getHttpMethod().contains(requestMethod)){
                         return false;
                     }

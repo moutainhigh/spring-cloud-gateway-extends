@@ -11,6 +11,7 @@
         <module>web-agent</module>
         <module>base</module>
         <module>test</module>
+        <module>rate-limiter</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

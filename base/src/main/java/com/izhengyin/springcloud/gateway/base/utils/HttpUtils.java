@@ -37,4 +37,14 @@ public class HttpUtils {
         }
         return ip;
     }
+
+    /**
+     * 获取客户端agent
+     * @param request
+     * @return
+     */
+    public static String getUserAgent(ServerHttpRequest request){
+        return request.getHeaders().getFirst("User-Agent");
+    }
+
 }
