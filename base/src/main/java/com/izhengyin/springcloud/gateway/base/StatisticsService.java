@@ -64,7 +64,7 @@ public class StatisticsService {
      * @param metrics
      */
     public void collect(Metrics metrics){
-        boolean isError = Optional.ofNullable(metrics.getCode())
+        boolean isError = Optional.ofNullable(metrics.getHttpCode())
                             .map(code -> code >= HttpStatus.BAD_REQUEST.value() && code != HttpStatus.NOT_FOUND.value())
                             .orElse(false);
         int resTime = Optional.ofNullable(metrics.getResTimeMs()).map(Long::intValue).orElse(0);

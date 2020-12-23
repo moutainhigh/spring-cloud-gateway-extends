@@ -71,8 +71,8 @@ public class MetricsService {
         metrics.setName(api.getName());
         metrics.setMapping(api.getMappingInfo());
         metrics.setMethod(api.getMethod());
-        metrics.setReqMethod(request.getMethodValue());
-        metrics.setCode(Optional.ofNullable(swe.getResponse().getStatusCode()).map(HttpStatus::value).orElse(0));
+        metrics.setHttpMethod(request.getMethodValue());
+        metrics.setHttpCode(Optional.ofNullable(swe.getResponse().getStatusCode()).map(HttpStatus::value).orElse(0));
         metrics.setUri(request.getURI().getPath());
         metrics.setUserAgent(request.getHeaders().getFirst("User-Agent"));
         metrics.setClientIp(clientIp);
@@ -103,7 +103,7 @@ public class MetricsService {
                 metrics.getName(),
                 metrics.getMapping(),
                 metrics.getMethod(),
-                metrics.getCode()+"",
+                metrics.getHttpCode()+"",
                 metrics.getErrorType()
         ).inc();
         responseTimeHistogram.labels(
@@ -112,7 +112,7 @@ public class MetricsService {
                 metrics.getName(),
                 metrics.getMapping(),
                 metrics.getMethod(),
-                metrics.getCode()+"",
+                metrics.getHttpCode()+"",
                 metrics.getErrorType()
         ).observe(metrics.getResTimeMs().doubleValue());
     }
