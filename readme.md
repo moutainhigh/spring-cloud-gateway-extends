@@ -2,7 +2,7 @@
   <strong>指标采集、流量监控、组合流控</strong>
 </p>
 <p align="center">
-  扩展自 Spring cloud gateway
+  与 Spring cloud gateway 无缝集成
 </p>
 
 # Spring cloud gateway （网关） 除了路由、熔断还可以做的更多
