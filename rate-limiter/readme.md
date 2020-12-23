@@ -105,7 +105,7 @@ public interface ApiController {
 
 ```
 
-通过接口定义可以得到他们的处理请求的Method
+通过接口定义可以得到它们处理请求的Method
 
 ``` 
 com.izhengyin.springcloud.gateway.test.webagent.contollers.impl.ApiControllerImpl#hello(String)",
@@ -127,8 +127,10 @@ rate-limiter.com.izhengyin.springcloud.gateway.test.webagent.contollers.impl.Api
 
 ![token-bucket](config-table.png)
 
+#### Properties 
 
-> 令牌增加速率 , 令牌桶容量 ，时间单位 ， 限流类别 , 受限时返回的状态码(默认403)
+> 格式：rate-limiter.com.xxx.abc = 令牌增加速率 , 令牌桶容量 ，时间单位 ， 限流类别 , 受限时返回的状态码(默认403)
+
 * 比如：rate-limiter.com.xxx.abc = 50,100,1s,ip 意思是单个IP对于com.xxx.abc下的接口每秒允许50次请求，空闲情况下，突发允许每秒100次请求
 * 比如：rate-limiter.com.xxx.abc = 200,400,1m,spider,503 意思是标记为爬虫的Agent对于com.xxx.abc下的接口的访问每分允许200次请求，空闲情况下，突发允许每分400次请求，当触发限流时返回 503 的状态码
 
