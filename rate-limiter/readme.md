@@ -27,6 +27,12 @@ KeyResolver publicKeyResolver() {
 }
 
 ```
+以上配置对应的参数：
+
+* 多久补充一次令牌 , 1秒
+* 一次补充多少个令牌 , 1000
+* 令牌桶的大小 , 2000
+* 桶区分的KEY , 服务名 + 请求IP
 
 ## rate-limiter 功能增强
 
