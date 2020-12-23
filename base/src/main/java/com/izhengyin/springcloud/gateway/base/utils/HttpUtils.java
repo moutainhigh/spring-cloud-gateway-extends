@@ -14,9 +14,8 @@ import java.util.regex.Pattern;
  */
 @Slf4j
 public class HttpUtils {
-    public final static String LOCAL_IP = "127.0.0.1";
-    public final static String UNKNOWN = "unknown";
-    public final static String IP_SPLIT_MARK = ",";
+    private final static String IP_SPLIT_MARK = ",";
+    private final static String IP_UNKNOWN = "0.0.0.0";
 
     /**
      * 获取客户端IP
@@ -26,16 +25,16 @@ public class HttpUtils {
     public static String getClientIp(ServerHttpRequest request) {
         HttpHeaders headers = request.getHeaders();
         String ip = headers.getFirst("x-forwarded-for");
-        if (ip != null && ip.length() != 0 && ! UNKNOWN.equalsIgnoreCase(ip)) {
+        if (ip != null && ip.length() != 0) {
             // 多次反向代理后会有多个ip值，第一个ip才是真实ip
             if (ip.contains(IP_SPLIT_MARK)) {
                 ip = ip.split(IP_SPLIT_MARK)[0];
             }
         }
-        if (ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)) {
-            ip = Optional.ofNullable(request.getRemoteAddress()).map(v -> v.getAddress().getHostAddress()).orElse(UNKNOWN);
+        if (ip == null || ip.length() == 0) {
+            ip = Optional.ofNullable(request.getRemoteAddress()).map(v -> v.getAddress().getHostAddress()).orElse(null);
         }
-        return ip;
+        return Optional.ofNullable(ip).orElse(IP_UNKNOWN);
     }
 
     /**

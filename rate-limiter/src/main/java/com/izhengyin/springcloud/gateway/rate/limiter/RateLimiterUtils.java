@@ -1,9 +1,7 @@
 package com.izhengyin.springcloud.gateway.rate.limiter;
-
 import com.izhengyin.springcloud.gateway.base.utils.HttpUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
-
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
@@ -62,16 +60,13 @@ public class RateLimiterUtils {
     }
 
     /**
-     *
+     * 获取认证类型的key
      * @param type
      * @param swe
      * @return
      */
     private static String getAuthenticationTypeKey(AuthenticationType type , ServerWebExchange swe){
         String clientIp = HttpUtils.getClientIp(swe.getRequest());
-        if(HttpUtils.UNKNOWN.equals(clientIp) || HttpUtils.LOCAL_IP.equals(clientIp)){
-            return null;
-        }
         //检查类型为爬虫
         if(AuthenticationType.SPIDER.equals(type)){
             //不是爬虫，不做验证

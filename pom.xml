@@ -10,7 +10,7 @@
     <modules>
         <module>web-agent</module>
         <module>base</module>
-        <module>test</module>
+        <module>example</module>
         <module>rate-limiter</module>
     </modules>
     <parent>

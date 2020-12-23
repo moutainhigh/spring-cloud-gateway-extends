@@ -30,20 +30,18 @@ public class MetricsService {
     private String application;
     @Value("${gateway.enable-access-log:true}")
     private Boolean enableAccessLog;
-
-    @Value("${gateway.request-counter-metrics-name:gateway_request_counter}")
-    private String gatewayRequestCounterMetricsName;
-
-    @Value("${gateway.response-time-metrics-name:gateway_response_time}")
-    private String gatewayResponseTimeMetricsName;
-
     private Counter requestCounter;
     private Histogram responseTimeHistogram;
     private final StatisticsService statisticsService;
     private static Logger gatewayAccessLog = LoggerFactory.getLogger("gatewayAccessLog");
-    public MetricsService(CollectorRegistry registry , StatisticsService statisticsService){
+    public MetricsService(
+            CollectorRegistry registry ,
+            StatisticsService statisticsService,
+            @Value("${gateway.request-counter-metrics-name:gateway_request_counter}") String gatewayRequestCounterMetricsName,
+            @Value("${gateway.response-time-metrics-name:gateway_response_time}") String gatewayResponseTimeMetricsName
+    ){
         this.statisticsService = statisticsService;
-        createPrometheusCollector(registry);
+        createPrometheusCollector(registry,gatewayRequestCounterMetricsName,gatewayResponseTimeMetricsName);
     }
 
     /**
@@ -123,13 +121,13 @@ public class MetricsService {
      * prometheus 收集器
      * @param registry
      */
-    private void createPrometheusCollector(CollectorRegistry registry){
+    private void createPrometheusCollector(CollectorRegistry registry,String counterMetricsName,String responseTimeMetricsName){
         requestCounter = Counter.build()
-                .name(gatewayRequestCounterMetricsName)
+                .name(counterMetricsName)
                 .labelNames("application","service","name","mapping","method","code","errorType")
                 .help("requests counter").register(registry);
         responseTimeHistogram = Histogram.build()
-                .name(gatewayResponseTimeMetricsName)
+                .name(responseTimeMetricsName)
                 .labelNames("application","service","name","mapping","method","code","errorType")
                 .help("response bytes histogram").register(registry);
     }
